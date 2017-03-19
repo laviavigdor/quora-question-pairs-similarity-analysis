@@ -20,12 +20,6 @@ This package will perform similarity analysis on Quora question pairs.
         python train.py
 
     Which will create a model.h5 and weights.h5 files.
-4. Run 
-
-        echo "This is a sample tweet to predict on" | python predict.py
-    Or
-        
-        cat file-containing-one-tweet-per-line.txt | python predict.py
         
 ## Reference
 * [Using pre-trained word embeddings in a Keras model](https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html)
