@@ -41,16 +41,9 @@ def main():
 def make_model(embedded_sequences, number_of_categories):
     model = Sequential([
         embedded_sequences,
-        Conv1D(128, 5, activation='relu'),
-        AveragePooling1D(5),
-        Conv1D(128, 5, activation='relu'),
-        AveragePooling1D(5),
-        Conv1D(128, 5, activation='relu'),
-        MaxPooling1D(5),
-        Flatten(),
-        Dropout(0.2),
-        Dense(128, activation='relu'),
-        Dense(10, activation='softmax')
+        Dense(8192, activation='relu'),
+        # Dropout(0.2),
+        Dense(number_of_categories, activation='softmax')
     ])
 
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
