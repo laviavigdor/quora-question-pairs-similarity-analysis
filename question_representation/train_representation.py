@@ -2,7 +2,7 @@ from __future__ import print_function
 
 from keras.callbacks import ModelCheckpoint
 
-import model_creation_representation
+import question_representation.model_creation_representation
 import os
 
 BASE_DIR                = '.'
@@ -17,7 +17,7 @@ VALIDATION_SPLIT        = 0.2
 MODEL_FILE              = "model.h5"
 
 def main():
-    model, X_train, X_test, y_train, y_test = model_creation_representation.main()
+    model, X_train, X_test, y_train, y_test = question_representation.model_creation_representation.main()
     train(model, X_train, y_train)
 
     score = model.evaluate(X_test,y_test, verbose=0)

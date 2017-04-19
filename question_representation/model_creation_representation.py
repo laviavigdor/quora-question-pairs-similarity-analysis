@@ -6,6 +6,7 @@ from keras.layers import Dense, Activation
 from keras.optimizers import Adam
 from sklearn import model_selection
 
+import question_representation.preprocess_representation
 import os
 import numpy as np
 
@@ -21,7 +22,7 @@ TEST_SIZE                = 0.2
 import preprocess
 
 def main():
-    raw_data, duplicate_sets, question_texts = preprocess.main()
+    raw_data, duplicate_sets, question_texts = question_representation.preprocess_representation.main()
     model, word_index, ids_sequences = create_model(len(duplicate_sets), question_texts)
     X_train, X_test, y_train, y_test = get_training_and_validation_sets(duplicate_sets, ids_sequences, len(duplicate_sets))
     return model, X_train, X_test, y_train, y_test
