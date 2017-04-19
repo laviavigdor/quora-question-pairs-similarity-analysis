@@ -1,5 +1,4 @@
 *.pyc
 test.csv
 train.csv
-.idea/
 glove/
