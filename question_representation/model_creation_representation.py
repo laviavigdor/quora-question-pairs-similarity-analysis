@@ -31,14 +31,15 @@ def get_training_and_validation_sets(duplicate_sets, ids_sequences, number_of_ca
     print("[get_training_and_validation_sets] - START")
     X = []
     y = []
+
     for question_id, sequence in ids_sequences.items():
         X.append(sequence)
         y_vector = []
         for set in duplicate_sets.values():
             if question_id in set:
-                y_vector += [1]
+                y_vector.append(1)
             else:
-                y_vector += [0]
+                y_vector.append(0)
         y.append(y_vector)
     # random_state (WITH ANY NUMBER) will split always the same for a given data
     # this is in case we want to reproduce result
@@ -80,7 +81,7 @@ def make_embedding_layer(word_index):
     print("[make_embedding_layer] - START")
 
     words_vector = get_embeddings()
-    num_of_words = min(MAX_NUM_OF_WORDS, len(word_index))
+    num_of_words = min(MAX_NUM_OF_WORDS, len(word_index) + 1)
     embedding_matrix = np.zeros((num_of_words, EMBEDDING_DIM_FOR_WORD))
 
     for word, index in word_index.items():
