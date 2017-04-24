@@ -30,11 +30,13 @@ def train(model, X_train, y_train):
     print("[train] - START")
 
     # validation_split - using TensorFlow recommendation, which is 1/12.
-    cb = [ModelCheckpoint("weights.h5", save_best_only=True, save_weights_only=False)]
-    model.fit(np.array(X_train), np.array(y_train), validation_split = 1/12, epochs=10, batch_size=BATCH_SIZE, verbose=1 ,callbacks=cb)
+    callbacks_save_best = [ModelCheckpoint("weights.h5", save_best_only=True, save_weights_only=False)]
+    model.fit(np.array(X_train), np.array(y_train), validation_split = 1/12, epochs=10, batch_size=BATCH_SIZE, verbose=1 ,callbacks=callbacks_save_best)
 
+
+    callbacks = [ModelCheckpoint("weights.h5", save_best_only=False, save_weights_only=False)]
     # run 3 more epochs using all training data (no validation_split)
-    model.fit(np.array(X_train), np.array(y_train), epochs=3, batch_size=BATCH_SIZE, verbose=0 ,callbacks=cb)
+    model.fit(np.array(X_train), np.array(y_train), epochs=3, batch_size=BATCH_SIZE, verbose=0 ,callbacks=callbacks)
 
     try:
         os.remove(MODEL_FILE)
